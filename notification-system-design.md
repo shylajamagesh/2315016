@@ -159,3 +159,25 @@ SELECT * FROM notifications WHERE userid = 1 ORDER BY createdtime DESC LIMIT 10;
 ## 
 ## 
 # Stage 5
+
+## problem 
+very slow , if one email fails them it will stop for all users 
+
+# redesign
+Instead of sending notifications in a loop, we redesign using a queue
+
+## Revised Pseudocode
+
+function notify_all(student_ids, message):
+    notification_id = save_to_db(message)
+    for each student_id in student_ids:
+        add_to_queue(student_id, notification_id, message)
+
+
+function worker():
+    job = get_from_queue()
+    try:
+        send_email(job.student_id, job.message)
+        push_to_app(job.student_id, job.message)
+    catch error:
+        retry(job)
