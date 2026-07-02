@@ -105,3 +105,6 @@ UPDATE notifications SET isread = true WHERE userid = 1;
 
 # _> Delete notification
 DELETE FROM notifications WHERE id = 1;
+
+
+## Stage 3
