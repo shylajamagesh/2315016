@@ -123,9 +123,9 @@ Creating indexing will help because :
 
 # computational cost
 n- number of rows or records in the table
-without indexing : O(n) 
-with index : O(log n) 
-indexing uses the trees concept
+-> without indexing : O(n) 
+-> with index : O(log n) 
+->indexing uses the trees concept
 
 
 # devlopers advice - indexing at all column
