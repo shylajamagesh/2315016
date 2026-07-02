@@ -137,3 +137,17 @@ Because :
 
 # placement notification in past 7 days
 SELECT * FROM notifications WHERE notificationType = 'Placement' AND createdtime >= NOW() - INTERVAL 7 DAY;
+
+
+## stage 4
+Solution is Indexing or pagination.
+- only gets the limjted notification
+SELECT * FROM notifications WHERE userid = 1 ORDER BY createdtime DESC LIMIT 10;
+
+# benifit
+1. fast seaching 
+2. fast response
+
+# drawback
+1. less data load - pagination
+2. slow insert , update , delete - indexing
