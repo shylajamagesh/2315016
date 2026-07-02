@@ -1,7 +1,7 @@
 ## Notification App Backend
 ## stage 1
 
-## Get All Notifications
+# Get All Notifications
 
 METHOD : GET
 Endpoint: /api/notifications
@@ -10,7 +10,7 @@ Headers: Authorization: Bearer <token>
 
 
 
-## Get Notification by ID
+# Get Notification by ID
 
 METHOD : GET
 Endpoint : /api/notifications/{id}
@@ -18,7 +18,7 @@ Headers : Authorization: Bearer <token>
 
 
 
-## Create Notification
+# Create Notification
 
 METHOD : POST
 Endpoint : /api/notifications
@@ -32,7 +32,7 @@ Body: json
 
 
 
-## Mark Notification as Read
+# Mark Notification as Read
 
 METHOD : PATCH
 Endpoint : /api/notifications/{id}/read
@@ -42,7 +42,7 @@ Authorization: Bearer <token>
 
 
 
-## Mark All Notifications as Read
+# Mark All Notifications as Read
 
 METHOD : PATCH
 Endpoint : /api/notifications/read-all
@@ -52,14 +52,13 @@ Authorization: Bearer <token>
 
 
 
-## Delete Notification
+# Delete Notification
 
 METHOD : DELETE
 Endpoint : /api/notifications/{id}
 Headers :
 Authorization: Bearer <token>
 
-##stage
 
 
 
@@ -69,7 +68,7 @@ Data base selection - MySql
 reason - to store structerd sata , fast CRUD operatiions 
 
 
-## Database Schema
+# Database Schema
 Table name : notifications
 attributes
 1. id - INT , PRIMARY KEY
@@ -107,4 +106,34 @@ UPDATE notifications SET isread = true WHERE userid = 1;
 DELETE FROM notifications WHERE id = 1;
 
 
+
+
 ## Stage 3
+
+# is thequerry correct ?
+Yes it is correct , but not optimized for the larger dataset with 5000000 notifications , it slow downs the performnce
+
+# why it slows 
+it scans the full table for a single record... and if it scans again and again it may take more time
+
+# what should be changes 
+Creating indexing will help because :
+-> faster 
+-> accuarte scan , reduces the full table scan
+
+# computational cost
+n- number of rows or records in the table
+without indexing : O(n) 
+with index : O(log n) 
+indexing uses the trees concept
+
+
+# devlopers advice - indexing at all column
+No, it is not effective,
+Because :
+1. indexing every column consumes more memorey
+2. slows down insert , upadte , delete
+3. uncessary or not frequenty used columns will be never used
+
+# placement notification in past 7 days
+SELECT * FROM notifications WHERE notificationType = 'Placement' AND createdtime >= NOW() - INTERVAL 7 DAY;
