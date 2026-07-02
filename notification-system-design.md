@@ -1,4 +1,5 @@
 ## Notification App Backend
+## 
 ## stage 1
 
 # Get All Notifications
@@ -62,7 +63,8 @@ Authorization: Bearer <token>
 
 
 
-
+## 
+## 
 ## stage 2
 Data base selection - MySql
 reason - to store structerd sata , fast CRUD operatiions 
@@ -107,7 +109,8 @@ DELETE FROM notifications WHERE id = 1;
 
 
 
-
+## 
+## 
 ## Stage 3
 
 # is thequerry correct ?
@@ -138,7 +141,8 @@ Because :
 # placement notification in past 7 days
 SELECT * FROM notifications WHERE notificationType = 'Placement' AND createdtime >= NOW() - INTERVAL 7 DAY;
 
-
+## 
+## 
 ## stage 4
 Solution is Indexing or pagination.
 - only gets the limjted notification
